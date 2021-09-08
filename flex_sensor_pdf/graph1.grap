@@ -1,0 +1,74 @@
+#######################
+#Graph left
+#######################
+graph A
+frame wid 2.5
+draw solid
+label top "50% Flexing"
+label left "Voltage Range" "" ""
+ticks bottom at 1000 "1K", 10000 "10K", 20000 "20K", 30000 "30K"
+######################
+#Vars
+######################
+vin=5
+min_y=0
+max_y=0
+max_x=0
+rfmin=29000
+rfmax=90000*0.5
+######################
+#Functions
+######################
+define vout { (vin * ( ($2) / ( ($1)+($2) ) )) }
+define yy { vout(rfmin,($1)) - vout(rfmax,($1))}
+define y {
+  rc=$1
+  v_range=yy(rc)
+  if (rc == 1000) then { min_y = v_range}
+  if (v_range > max_y) then {
+    max_y = v_range
+    max_x = rc
+  }
+  next at rc,v_range
+}
+######################
+#Plot left
+######################
+for i from 1000 to 40000 by + 1000 do {
+  y(i)
+}
+#max value mark
+times at max_x,max_y
+plot max_y at max_x,max_y+0.02
+line dashed from max_x,min_y to max_x,max_y
+ticks bottom at max_x "36K"
+#10K mark
+times at 10000,yy(10000)
+plot yy(10000) at 10000-4000,yy(10000)+0.02
+line dashed from 10000,min_y to 10000,yy(10000)
+#######################
+#Graph right
+#######################
+graph A with .Frame.w at A.Frame.e + (0.1,0)
+label top "100% Flexing"
+frame wid 2.5 left solid bot solid
+ticks left off
+ticks right on
+ticks bottom at 1000 "1K",10000 "10K", 20000 "20K", 30000 "30K",40000 "40K"
+draw solid
+rfmax=90000
+######################
+#Plot right
+######################
+for i from 1000 to 55000 by + 1000 do {
+  y(i)
+}
+#10K mark
+times at 10000,yy(10000)
+plot yy(10000) at 10000-4000,yy(10000)+0.1
+line dashed from 10000,min_y to 10000,yy(10000)
+#max value mark
+times at max_x,max_y
+plot max_y at max_x,max_y+0.04
+line dashed from max_x,min_y to max_x,max_y
+ticks bottom at max_x "51K"
