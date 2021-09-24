@@ -7,7 +7,7 @@ all: $(IMAGES) flex_sensor.pdf
 	convert $< $@
 
 .ms.ps:
-	GHLENABLECOLOR=0 && soelim -r $< | ghighlight | groff -Geptk -ms -Tps > $@
+	groff -Geptk -ms -Tps $< > $@
 
 .ps.pdf:
 	ps2pdf $< > $@
