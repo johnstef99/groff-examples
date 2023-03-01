@@ -1,0 +1,20 @@
+%K bfs coloring algorithm
+%T BFS and coloring-based parallel algorithms for strongly connected components and related problems
+%A Slota, George M
+%A Rajamanickam, Sivasankaran
+%A Madduri, Kamesh
+%B 2014 IEEE 28th International Parallel and Distributed Processing Symposium
+%P 550-559
+%D 2014
+%I IEEE
+
+%K matrix collection mtx
+%T SuiteSparse Matrix Collection
+%L SuiteSparse Matrix Collection
+%O link: https://suitesparse-collection-website.herokuapp.com/
+
+%K work stealing scheduler
+%L Cilk's Work-Stealing Scheduler
+%T Cilk's Work-Stealing Scheduler
+%P 13
+%O link: https://www.opencilk.org/img/opencilk-pact-2021.pdf
